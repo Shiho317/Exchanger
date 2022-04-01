@@ -1,0 +1,43 @@
+.results-wrapper {
+  width: 100%;
+  height: 80vh;
+  background: var(--grey-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.back-btn {
+  width: 80%;
+}
+
+.back-btn button {
+  width: 13rem;
+  height: 2.5rem;
+  border: none;
+  background: var(--black-color);
+  color: var(--grey-color);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-btn button:hover {
+  background: var(--green-color);
+  transition: all 0.3s ease;
+}
+
+.result-details {
+  width: 80%;
+  background: pink;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.chart-details {
+  width: 60%;
+  height: 50vh;
+  background: purple;
+}

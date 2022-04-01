@@ -1,0 +1,36 @@
+.header-wrapper {
+  width: 100%;
+  height: 5rem;
+  background: var(--black-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-wrapper nav {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-wrapper ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.header-wrapper li {
+  list-style: none;
+  cursor: pointer;
+}
+
+.header-wrapper a {
+  color: var(--grey-color);
+  text-decoration: none;
+}
+
+.header-wrapper a:hover {
+  color: var(--green-color);
+  transition: all 0.3s ease;
+}

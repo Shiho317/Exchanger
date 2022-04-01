@@ -1,0 +1,66 @@
+.exchange-wrapper {
+  width: 100%;
+  height: 80vh;
+  background: var(--grey-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exchange-input form{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.exchange-input form label {
+  width: 4rem;
+}
+
+.exchange-input form .submit-btn {
+  background: var(--black-color);
+  border: none;
+  width: 13rem;
+  height: 2.5rem;
+  color: var(--grey-color);
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 2rem auto;
+}
+
+.exchange-input form .submit-btn:hover {
+  background: var(--green-color);
+  transition: all 0.3s ease;
+}
+
+.reverse{
+  width: 3rem;
+  margin: 0 auto;
+  border: none;
+  cursor: pointer;
+  color: var(--black-color);
+}
+
+.reverse:hover {
+  color: var(--green-color);
+}
+
+.exchange-input .from,
+.exchange-input .to {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exchange-input input {
+  background: var(--black-color);
+  border: none;
+  color: var(--grey-color);
+  font-size: 1.2rem;
+  height: 2rem;
+}
+
+.exchange-input select {
+  height: 2rem;
+}
+
