@@ -1,15 +1,31 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import './Home.style.css';
 import { Link } from 'react-router-dom';
 import { AppContext } from '../../App';
 
 const Home = () => {
 
-  const { datas } = useContext(AppContext);
+  // const { 
+  //   fetchData, 
+  //   historicalUSD, 
+  //   fluctuationData, 
+  //   historical, 
+  //   fluctuation 
+  // } = useContext(AppContext);
+
+  // useEffect(() => {
+  //   fetchData(historical);
+  //   fetchData(fluctuation);
+  // },[])
+
+  // console.log(historicalUSD)
+  // console.log(fluctuationData.rates)
+  
+  let title = ['aa'];
 
   return (
     <div className='home-wrapper'>
-      <h1></h1>
+      <h1>{historicalUSD.date}</h1>
       <div className='home-contents'>
         <div className='home-left'>
           <div className='usd'>
@@ -24,7 +40,7 @@ const Home = () => {
         </div>
         <div className='home-right'>
           <ul>
-            <li>aaa</li>
+            <li>{title}</li>
           </ul>
         </div>
       </div>

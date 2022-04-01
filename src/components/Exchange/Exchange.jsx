@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RiArrowUpDownLine } from 'react-icons/ri';
 import './Exchange.style.css';
 
 const Exchange = () => {
+
+  const getConvert = () => {
+
+  }
+
+  const [ fromUnit, setFromUnit ] = useState('USD');
+
   return (
     <div className='exchange-wrapper'>
       <div className='exchange-input'>
