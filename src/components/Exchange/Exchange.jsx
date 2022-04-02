@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { RiArrowUpDownLine } from 'react-icons/ri';
 import { AppContext } from '../../App';
 import './Exchange.style.css';
@@ -9,6 +9,7 @@ const Exchange = () => {
     fetchData, 
     convert, 
     convertData, 
+    convertDataUnit,
     symbols, 
     symbolsData, 
     convertedAmount,
@@ -48,11 +49,15 @@ const Exchange = () => {
     console.log(convertedAmount)
   }
 
+  const [ onSubmitHandler, setOnSubmitHandler ] = useState(false);
+
   const getConvert = (e) => {
     e.preventDefault();
-    fetchData(convert)
+    fetchData(convert);
+    setOnSubmitHandler(true);
   }
   console.log(convertData)
+  
 
   return (
     <div className='exchange-wrapper'>
@@ -88,8 +93,15 @@ const Exchange = () => {
           </div>
           <button type='submit' className='submit-btn'>Calculte</button>
         </form>
+        {onSubmitHandler && (
+          <div className='results-amount'>
+            <h1>{Number(convertData.result).toFixed(2)} {convertDataUnit.to}</h1>
+            <p>({convertData.date})</p>
+          </div>
+        )}
       </div>
-      <h1>{convertData.result} {convertData.query.to}</h1>
+      <div className='exchange-chart'>
+      </div>
     </div>
   )
 }

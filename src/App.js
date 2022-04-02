@@ -20,6 +20,7 @@ function App() {
   const [ fluctuationData, setFluctuationData ] = useState([]);
   const [ latestData, setLatestData ] = useState([]);
   const [ convertData, setConvertData ] = useState([]);
+  const [ convertDataUnit, setConvertDataUnit ] = useState('');
   const [ timeseriesData, setTimeseriesData ] = useState([]);
   const [ symbolsData, setSymbolsData ] = useState([]);
 
@@ -50,6 +51,7 @@ function App() {
           break;
         case convert:
           setConvertData(catchData);
+          setConvertDataUnit(catchData.query);
           break;
         case timeseries:
           setTimeseriesData(catchData.rates);
@@ -107,7 +109,8 @@ function App() {
             historicalUSD, 
             fluctuationData, 
             latestData, 
-            convertData, 
+            convertData,
+            convertDataUnit, 
             timeseriesData, 
             symbolsData,
             latest,

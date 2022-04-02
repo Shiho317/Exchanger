@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 2rem;
 }
 
 .exchange-input form{
@@ -64,3 +65,16 @@
   height: 2rem;
 }
 
+.exchange-chart {
+  width: 25rem;
+  height: 40vh;
+  background: var(--black-color);
+}
+
+.results-amount {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
