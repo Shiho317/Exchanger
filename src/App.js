@@ -23,9 +23,6 @@ function App() {
   const [ timeseriesData, setTimeseriesData ] = useState([]);
   const [ symbolsData, setSymbolsData ] = useState([]);
 
-  const [ value, setValue ] = useState([]);
-  const [ key, setKey ] = useState('');
-
   const getData = (method, url, data) => {
     const datas = fetch(url, {
       method: method,
@@ -64,7 +61,7 @@ function App() {
           setHistoricalUSD(catchData);
           break;
         case symbols:
-          setSymbolsData(catchData);
+          setSymbolsData(catchData.symbols);
           break;
         default:
           console.log(catchData);
@@ -88,17 +85,25 @@ function App() {
   newDate.setDate(minusDay)
   const yesterday = 
   `${newDate.getFullYear()}-${('000' + (newDate.getMonth() + 1)).slice(-2)}-${('000' + newDate.getDate()).slice(-2)}`;
+
+  const [input, setInput] = useState({
+    fromAmount: 0,
+    fromUnit: 'AED',
+    toUnit: 'AED'
+  })
   
   const latest = 'latest';
-  const convert = 'convert?from=USD&to=EUR';
+  const convert = `convert?from=${input.fromUnit}&to=${input.toUnit}&amount=${input.fromAmount}`;
   const historical = `${today}&base=USD`;
   const timeseries = `timeseries?start_date=${weekAgo}&end_date=${today}&base=CAD`;
   const fluctuation = `fluctuation?start_date=${yesterday}&end_date=${today}&base=USD`;
   const symbols = 'symbols';
 
+
   return (
     <AppContext.Provider 
-    value={{fetchData, 
+    value={{fetchData,
+            setInput, 
             historicalUSD, 
             fluctuationData, 
             latestData, 

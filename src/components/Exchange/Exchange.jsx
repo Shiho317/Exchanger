@@ -1,26 +1,74 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { RiArrowUpDownLine } from 'react-icons/ri';
+import { AppContext } from '../../App';
 import './Exchange.style.css';
 
 const Exchange = () => {
 
-  const getConvert = () => {
+  const { 
+    fetchData, 
+    convert, 
+    convertData, 
+    symbols, 
+    symbolsData, 
+    convertedAmount,
+    setConvertedAmount,
+    setInput,
+    } = useContext(AppContext);
 
+  useEffect(() => {
+    fetchData(symbols)
+  },[])
+
+  const symbolsResults = Object.values(symbolsData);
+
+  const onChangeFrom = (e) => {
+    setInput(value => ({
+      ...value,
+      fromUnit: e.target.value
+    }))
+  };
+
+  const onChangeTo = (e) => {
+    setInput(value => ({
+      ...value,
+      toUnit: e.target.value
+    }))
   }
 
-  const [ fromUnit, setFromUnit ] = useState('USD');
+  const onChangeFromAmount = (e) => {
+    setInput(value => ({
+      ...value,
+      fromAmount: e.target.value
+    }))
+  }
+
+  const onChangeConverted = (e) => {
+    setConvertedAmount(e.target.value)
+    console.log(convertedAmount)
+  }
+
+  const getConvert = (e) => {
+    e.preventDefault();
+    fetchData(convert)
+  }
+  console.log(convertData)
 
   return (
     <div className='exchange-wrapper'>
       <div className='exchange-input'>
-        <form>
+        <form onSubmit={getConvert}>
           <div className='from'>
             <label>
               From:
             </label>
-            <input type='number' required/>
-            <select id='unit-from' required>
-              <option></option>
+            <input type='number' name='fromAmount' required onChange={onChangeFromAmount}/>
+            <select id='unit-from' required onChange={onChangeFrom}>
+            {symbolsResults.map(result => (
+              <option key={result.code} value={result.code}>
+                {result.code}
+              </option>
+            ))}
             </select>
           </div>
           <button className='reverse'>
@@ -30,14 +78,18 @@ const Exchange = () => {
             <label>
               To:
             </label>
-            <input type='number' required/>
-            <select id='unit-to' required>
-              <option></option>
+            <select id='unit-to' required onChange={onChangeTo}>
+            {symbolsResults.map(result => (
+              <option key={result.code}>
+                {result.code}
+              </option>
+            ))}
             </select>
           </div>
           <button type='submit' className='submit-btn'>Calculte</button>
         </form>
       </div>
+      <h1>{convertData.result} {convertData.query.to}</h1>
     </div>
   )
 }
