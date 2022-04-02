@@ -9,11 +9,22 @@ import Exchange from './components/Exchange/Exchange';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
+import LineCharts from './components/Home/LineCharts';
 import Results from './components/Results/Results';
 
 export const AppContext = createContext()
 
 function App() {
+
+  const [ historicalUSD, setHistoricalUSD ] = useState([]);
+  const [ fluctuationData, setFluctuationData ] = useState([]);
+  const [ latestData, setLatestData ] = useState([]);
+  const [ convertData, setConvertData ] = useState([]);
+  const [ timeseriesData, setTimeseriesData ] = useState([]);
+  const [ symbolsData, setSymbolsData ] = useState([]);
+
+  const [ value, setValue ] = useState([]);
+  const [ key, setKey ] = useState('');
 
   const getData = (method, url, data) => {
     const datas = fetch(url, {
@@ -44,10 +55,10 @@ function App() {
           setConvertData(catchData);
           break;
         case timeseries:
-          setTimeseriesData(catchData);
+          setTimeseriesData(catchData.rates);
           break;
         case fluctuation:
-          setFluctuationData(catchData);
+          setFluctuationData(catchData.rates);
           break;
         case historical:
           setHistoricalUSD(catchData);
@@ -64,14 +75,6 @@ function App() {
     }
   }
 
-  const [ historicalUSD, setHistoricalUSD ] = useState([]);
-  const [ fluctuationData, setFluctuationData ] = useState([]);
-  const [ latestData, setLatestData ] = useState([]);
-  const [ convertData, setConvertData ] = useState([]);
-  const [ timeseriesData, setTimeseriesData ] = useState([]);
-  const [ symbolsData, setSymbolsData ] = useState([]);
-
-  
   const newDate = new Date();
   const today = 
   `${newDate.getFullYear()}-${('000' + (newDate.getMonth() + 1)).slice(-2)}-${('000' + newDate.getDate()).slice(-2)}`;
@@ -88,9 +91,9 @@ function App() {
   
   const latest = 'latest';
   const convert = 'convert?from=USD&to=EUR';
-  const historical = `${today}`;
-  const timeseries = `timeseries?start_date=${weekAgo}&end_date=${today}`;
-  const fluctuation = `fluctuation?start_date=${yesterday}&end_date=${today}`;
+  const historical = `${today}&base=USD`;
+  const timeseries = `timeseries?start_date=${weekAgo}&end_date=${today}&base=CAD`;
+  const fluctuation = `fluctuation?start_date=${yesterday}&end_date=${today}&base=USD`;
   const symbols = 'symbols';
 
   return (
@@ -114,6 +117,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/exchange' element={<Exchange/>}/>
         <Route path='/results' element={<Results/>}/>
+        <Route path='/charts' element={<LineCharts/>}/>
       </Routes>
       <Footer/>
     </Router>
