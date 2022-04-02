@@ -11,11 +11,11 @@ const Home = () => {
     timeseriesData, 
     fluctuationData, 
     timeseries,
-    fluctuation 
+    fluctuation,
   } = useContext(AppContext);
 
   useEffect(() => {
-    fetchData(timeseries)
+    fetchData(timeseries);
     fetchData(fluctuation);
   },[])
 
@@ -38,10 +38,14 @@ const Home = () => {
       <div className='home-contents'>
         <div className='home-left'>
           <div className='usd'>
-            <LineCharts timeseriesDataKey={timeseriesDataKey} usdDatas={usdDatas}/>
+            <LineCharts 
+              timeseriesDataKey={timeseriesDataKey} 
+              usdDatas={usdDatas}/>
           </div>
           <div className='subtitle'>
-            <p>Hello guest.<br/>If you want to know foreign exchange rates,<br/>click the button in below.</p>
+            <p>Hello guest.<br/>
+            If you want to know foreign exchange rates,<br/>
+            click the button in below.</p>
             <Link to='/exchange'>
               <button>Exchange</button>
             </Link>
@@ -53,7 +57,9 @@ const Home = () => {
             <li key={index}>
               <p className='unit-code'>{keys[index]} / USD</p>
               <p className='current-rate'>{(rate.end_rate).toFixed(2)}</p>
-              <p className={rate.change > 0 ? 'current-change' : 'current-change red'}>{(rate.change).toFixed(2)}({(rate.change_pct).toFixed(2)}%)</p>
+              <p className={rate.change > 0 ? 'current-change' : 'current-change red'}>
+                {(rate.change).toFixed(2)}({(rate.change_pct).toFixed(2)}%)
+              </p>
             </li>
           ))}
           </ul>

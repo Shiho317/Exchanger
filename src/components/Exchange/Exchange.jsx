@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { RiArrowUpDownLine } from 'react-icons/ri';
+import { FaAngleDoubleDown } from 'react-icons/fa';
 import { AppContext } from '../../App';
 import './Exchange.style.css';
+import ExchangeCharts from './ExchangeCharts';
 
 const Exchange = () => {
 
@@ -12,14 +13,21 @@ const Exchange = () => {
     convertDataUnit,
     symbols, 
     symbolsData, 
-    convertedAmount,
-    setConvertedAmount,
     setInput,
+    timeseries,
+    timeseriesData,
+    setBaseUnit
     } = useContext(AppContext);
 
   useEffect(() => {
     fetchData(symbols)
   },[])
+
+  const timeseriesDataKey = Object.keys(timeseriesData);
+  const timeseriesDataValue = Object.values(timeseriesData)
+  const timeseriesDatas = timeseriesDataValue.map(data => {
+    return data[convertDataUnit.to]
+  })
 
   const symbolsResults = Object.values(symbolsData);
 
@@ -28,6 +36,7 @@ const Exchange = () => {
       ...value,
       fromUnit: e.target.value
     }))
+    setBaseUnit(e.target.value)
   };
 
   const onChangeTo = (e) => {
@@ -44,20 +53,14 @@ const Exchange = () => {
     }))
   }
 
-  const onChangeConverted = (e) => {
-    setConvertedAmount(e.target.value)
-    console.log(convertedAmount)
-  }
-
   const [ onSubmitHandler, setOnSubmitHandler ] = useState(false);
 
   const getConvert = (e) => {
     e.preventDefault();
     fetchData(convert);
+    fetchData(timeseries);
     setOnSubmitHandler(true);
   }
-  console.log(convertData)
-  
 
   return (
     <div className='exchange-wrapper'>
@@ -67,8 +70,15 @@ const Exchange = () => {
             <label>
               From:
             </label>
-            <input type='number' name='fromAmount' required onChange={onChangeFromAmount}/>
-            <select id='unit-from' required onChange={onChangeFrom}>
+            <input 
+              type='number' 
+              name='fromAmount' 
+              required 
+              onChange={onChangeFromAmount}/>
+            <select 
+              id='unit-from' 
+              required 
+              onChange={onChangeFrom}>
             {symbolsResults.map(result => (
               <option key={result.code} value={result.code}>
                 {result.code}
@@ -77,7 +87,7 @@ const Exchange = () => {
             </select>
           </div>
           <button className='reverse'>
-            <RiArrowUpDownLine/>
+            <FaAngleDoubleDown/>
           </button>
           <div className='to'>
             <label>
@@ -101,6 +111,12 @@ const Exchange = () => {
         )}
       </div>
       <div className='exchange-chart'>
+        {onSubmitHandler && (
+          <ExchangeCharts 
+            timeseriesDataKey={timeseriesDataKey} 
+            timeseriesDatas={timeseriesDatas} 
+            convertDataUnit={convertDataUnit}/>
+        )}
       </div>
     </div>
   )

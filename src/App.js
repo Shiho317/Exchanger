@@ -9,16 +9,12 @@ import Exchange from './components/Exchange/Exchange';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
-import LineCharts from './components/Home/LineCharts';
-import Results from './components/Results/Results';
 
 export const AppContext = createContext()
 
 function App() {
 
-  const [ historicalUSD, setHistoricalUSD ] = useState([]);
   const [ fluctuationData, setFluctuationData ] = useState([]);
-  const [ latestData, setLatestData ] = useState([]);
   const [ convertData, setConvertData ] = useState([]);
   const [ convertDataUnit, setConvertDataUnit ] = useState('');
   const [ timeseriesData, setTimeseriesData ] = useState([]);
@@ -46,9 +42,6 @@ function App() {
         `${url}/${option}`
       )
       switch(option){
-        case latest:
-          setLatestData(catchData);
-          break;
         case convert:
           setConvertData(catchData);
           setConvertDataUnit(catchData.query);
@@ -58,9 +51,6 @@ function App() {
           break;
         case fluctuation:
           setFluctuationData(catchData.rates);
-          break;
-        case historical:
-          setHistoricalUSD(catchData);
           break;
         case symbols:
           setSymbolsData(catchData.symbols);
@@ -93,11 +83,11 @@ function App() {
     fromUnit: 'AED',
     toUnit: 'AED'
   })
+
+  const [ baseUnit, setBaseUnit ] = useState('CAD')
   
-  const latest = 'latest';
   const convert = `convert?from=${input.fromUnit}&to=${input.toUnit}&amount=${input.fromAmount}`;
-  const historical = `${today}&base=USD`;
-  const timeseries = `timeseries?start_date=${weekAgo}&end_date=${today}&base=CAD`;
+  const timeseries = `timeseries?start_date=${weekAgo}&end_date=${today}&base=${baseUnit}`;
   const fluctuation = `fluctuation?start_date=${yesterday}&end_date=${today}&base=USD`;
   const symbols = 'symbols';
 
@@ -105,17 +95,14 @@ function App() {
   return (
     <AppContext.Provider 
     value={{fetchData,
-            setInput, 
-            historicalUSD, 
+            setInput,
+            setBaseUnit, 
             fluctuationData, 
-            latestData, 
             convertData,
             convertDataUnit, 
             timeseriesData, 
             symbolsData,
-            latest,
             convert,
-            historical,
             timeseries,
             fluctuation,
             symbols}}>
@@ -124,8 +111,6 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/exchange' element={<Exchange/>}/>
-        <Route path='/results' element={<Results/>}/>
-        <Route path='/charts' element={<LineCharts/>}/>
       </Routes>
       <Footer/>
     </Router>

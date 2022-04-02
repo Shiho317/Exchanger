@@ -39,6 +39,7 @@
   margin: 0 auto;
   border: none;
   cursor: pointer;
+  font-size: 1.3rem;
   color: var(--black-color);
 }
 
@@ -66,8 +67,8 @@
 }
 
 .exchange-chart {
-  width: 25rem;
-  height: 40vh;
+  width: 30rem;
+  height: 35vh;
   background: var(--black-color);
 }
 

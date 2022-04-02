@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.style.css';
 import Logo from '../../assets/image/logo.svg';
+import { AppContext } from '../../App';
 
 const Header = () => {
+  
+  const { setBaseUnit } = useContext(AppContext);
+
   return (
     <div className='header-wrapper'>
       <nav>
@@ -12,7 +16,7 @@ const Header = () => {
         </div>
         <ul>
           <li>
-            <Link to='/'>
+            <Link to='/' onClick={() => {setBaseUnit('CAD')}}>
               HOME
             </Link>
           </li>

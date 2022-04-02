@@ -5,14 +5,14 @@ import Chart from 'chart.js/auto';
 
 Chart.register(CategoryScale)
 
-const ExchangeCharts = () => {
+const ExchangeCharts = ({timeseriesDataKey, timeseriesDatas, convertDataUnit}) => {
 
   const data = {
-    labels: ,
+    labels: timeseriesDataKey,
     datasets: [
       {
-        label: "USD",
-        data: ,
+        label: convertDataUnit.to,
+        data: timeseriesDatas,
         fill: true,
         backgroundColor: "rgba(238, 238, 238, 0.3)",
         borderColor: "rgba(238, 238, 238, 1)",
