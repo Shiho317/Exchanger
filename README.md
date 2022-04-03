@@ -6,6 +6,7 @@
 
 ## Demo
 
+![exchangerApp](https://user-images.githubusercontent.com/88401910/161408455-1611ff09-5bba-4e4c-b9f6-3e9c8b91f25d.jpg)
 ![exchangerApp](https://user-images.githubusercontent.com/88401910/161408255-cb74a5d4-f85a-457b-bacc-e28ad069ba8e.PNG)
 
 ## Languages/Frameworks
