@@ -1,11 +1,13 @@
 .exchange-wrapper {
   width: 100%;
-  height: 80vh;
+  height: 100%;
   background: var(--grey-color);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  padding: 1rem 0;
 }
 
 .exchange-input form{
@@ -51,7 +53,8 @@
 .exchange-input .to {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .exchange-input input {
@@ -67,8 +70,8 @@
 }
 
 .exchange-chart {
-  width: 30rem;
-  height: 35vh;
+  width: 90%;
+  height: 25vh;
   background: var(--black-color);
 }
 
@@ -78,4 +81,44 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.results-amount h1 {
+  font-size: 1.5rem;
+}
+
+@media screen and (min-width: 425px){
+  .exchange-chart {
+    height: 30vh;
+  }
+}
+
+@media screen and (min-width: 768px){
+  .exchange-chart {
+    width: 30rem;
+    height: 35vh; 
+  }
+}
+
+@media screen and (min-width: 1024px){
+  .exchange-wrapper {
+    padding: 0;
+    height: 80vh;
+    flex-direction: row;
+  }
+  
+  .exchange-input .from,
+  .exchange-input .to {
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  .exchange-chart {
+    width: 30rem;
+    height: 35vh;
+  }
+
+  .results-amount h1 {
+    font-size: 2rem;
+  }
 }

@@ -44,8 +44,8 @@ const Home = () => {
           </div>
           <div className='subtitle'>
             <p>Hello guest.<br/>
-            If you want to know foreign exchange rates,<br/>
-            click the button in below.</p>
+            Want to know foreign exchange rates?<br/>
+            Click the button in below.</p>
             <Link to='/exchange'>
               <button>Exchange</button>
             </Link>

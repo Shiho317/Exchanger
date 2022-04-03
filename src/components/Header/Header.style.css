@@ -21,6 +21,7 @@
 }
 
 .header-wrapper li {
+  font-size: 0.8rem;
   list-style: none;
   cursor: pointer;
 }
@@ -33,4 +34,10 @@
 .header-wrapper a:hover {
   color: var(--green-color);
   transition: all 0.3s ease;
+}
+
+@media screen and (min-width: 768px){
+  .header-wrapper li {
+    font-size: 1rem;
+  }
 }
